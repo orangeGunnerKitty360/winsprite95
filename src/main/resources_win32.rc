@@ -19,13 +19,13 @@ BEGIN
     BEGIN
         BLOCK "040904b0"
         BEGIN
-            VALUE "Comments", "https://github.com/LibreSprite/LibreSprite"
-            VALUE "FileDescription", "LibreSprite - Animated sprites editor & pixel art tool"
+            VALUE "Comments", "https://winsprite95-download.vercel.app"
+            VALUE "FileDescription", "WinSprite95 - Animated sprite editor & pixel art tool"
             VALUE "FileVersion", "1,0,0,0"
-            VALUE "InternalName", "libresprite"
+            VALUE "InternalName", "winsprite95"
             VALUE "LegalCopyright", "Copyright (C) 2001-2016 by David Capello, 2016-2023 LibreSprite contributors"
-            VALUE "OriginalFilename", "libresprite.exe"
-            VALUE "ProductName", "LIBRESPRITE"
+            VALUE "OriginalFilename", "winsprite95.exe"
+            VALUE "ProductName", "WINSPRITE95"
             VALUE "ProductVersion", "1,1,0,0"
         END
     END

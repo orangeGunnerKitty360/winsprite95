@@ -117,6 +117,8 @@ add_executable(libresprite WIN32
   ${win32_resources}
   ${x11_resources})
 
+set_target_properties(libresprite PROPERTIES OUTPUT_NAME winsprite95)
+
 target_link_libraries(libresprite ${KEEP_INJECTIONS_BEGIN}
   app-lib
   base-lib

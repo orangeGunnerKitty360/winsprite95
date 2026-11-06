@@ -1,14 +1,14 @@
 [Desktop Entry]
 Type=Application
 Encoding=UTF-8
-Name=LibreSprite
+Name=WinSprite95
 GenericName=Sprite Editor
 Comment=Animated sprite editor & pixel art tool
-Icon=libresprite
+Icon=winsprite95
 Categories=Graphics;2DGraphics;RasterGraphics;
-Exec=libresprite %U
-TryExec=libresprite
+Exec=winsprite95 %U
+TryExec=winsprite95
 Terminal=false
 StartupNotify=false
-StartupWMClass=libresprite
+StartupWMClass=winsprite95
 MimeType=image/bmp;image/gif;image/jpeg;image/png;image/x-pcx;image/x-tga;image/vnd.microsoft.icon;video/x-flic;image/webp;image/x-aseprite;

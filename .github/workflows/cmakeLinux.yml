@@ -1,12 +1,13 @@
 name: Linux
 
 on:
+  workflow_dispatch:
   push:
-    branches: [ master ]
+    branches: [ winsprite95 ]
     tags:
       - '*'
   pull_request:
-    branches: [ master ]
+    branches: [ winsprite95 ]
 
 permissions:
   contents: write
@@ -72,20 +73,20 @@ jobs:
         cd build/bin
         export ARCH="$(uname -m)"
         sh ../../packaging/linux/package_linux.sh
-        mv ./LibreSprite-anylinux-$ARCH.AppImage ../../
+        mv ./WinSprite95-anylinux-$ARCH.AppImage ../../
         cd ../..
         if [ "${{ steps.check_tag.outputs.has_tag }}" = "true" ]; then
-          APPIMAGE="libresprite-${{ steps.check_tag.outputs.tag }}-linux-$ARCH.AppImage"
-          mv "LibreSprite-anylinux-$ARCH.AppImage" "$APPIMAGE"
+          APPIMAGE="winsprite95-${{ steps.check_tag.outputs.tag }}-linux-$ARCH.AppImage"
+          mv "WinSprite95-anylinux-$ARCH.AppImage" "$APPIMAGE"
         else
-          APPIMAGE="LibreSprite-anylinux-$ARCH.AppImage"
+          APPIMAGE="WinSprite95-anylinux-$ARCH.AppImage"
         fi
         echo "appimage=$APPIMAGE" >> $GITHUB_OUTPUT
     - name: Archive production artifacts
       if: runner.arch == 'X64'
       uses: actions/upload-artifact@v7
       with:
-        name: ${{ steps.check_tag.outputs.has_tag == 'true' && format('libresprite-{0}-linux-x86_64', steps.check_tag.outputs.tag) || 'libresprite-linux-x86_64' }}
+        name: ${{ steps.check_tag.outputs.has_tag == 'true' && format('winsprite95-{0}-linux-x86_64', steps.check_tag.outputs.tag) || 'winsprite95-linux-x86_64' }}
         path: ${{ steps.appimage.outputs.appimage }}
         if-no-files-found: error
     - name: Attach the AppImage to the release
