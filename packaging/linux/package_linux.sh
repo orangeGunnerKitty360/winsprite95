@@ -16,21 +16,19 @@ cp ../../desktop/icons/hicolor/256x256/apps/libresprite.png "$APPDIR/winsprite95
 
 mv ./*.so* "$APPDIR/usr/lib" 2>/dev/null || true
 
-# Create AppImage with lib4bin and Sharun
-(
-export ARCH="$(uname -m)" # Just to be double sure
-cd "$APPDIR"
-wget "https://raw.githubusercontent.com/VHSgunzo/sharun/refs/heads/main/lib4bin" -O ./lib4bin
-chmod +x ./lib4bin
-xvfb-run -a -- ./lib4bin -p -v -e -k -w \
+# Create AppImage with lib4bin and Sharun. Keep the helper outside the AppDir
+# so it cannot recursively discover the directory that it is constructing.
+LIB4BIN="$(mktemp)"
+wget "https://raw.githubusercontent.com/VHSgunzo/sharun/refs/heads/main/lib4bin" -O "$LIB4BIN"
+chmod +x "$LIB4BIN"
+xvfb-run -a -- "$LIB4BIN" -d "$APPDIR" -p -v -e -k -w \
   "$out/winsprite95" \
   /usr/lib/libpthread.so* \
   /usr/lib/librt.so* \
   /usr/lib/libstdc++.so* 
-test -x ./sharun
-ln ./sharun ./AppRun 
-./sharun -g
-)
+test -x "$APPDIR/sharun"
+ln "$APPDIR/sharun" "$APPDIR/AppRun"
+"$APPDIR/sharun" -g
 
 # Maybe the data folder is being read during initial run
 # This lets the run complete with expected original locations and then
