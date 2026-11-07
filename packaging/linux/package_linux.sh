@@ -21,7 +21,7 @@ mv ./*.so* "$APPDIR/usr/lib" 2>/dev/null || true
 LIB4BIN="$(mktemp)"
 wget "https://raw.githubusercontent.com/VHSgunzo/sharun/refs/heads/main/lib4bin" -O "$LIB4BIN"
 chmod +x "$LIB4BIN"
-xvfb-run -a -- "$LIB4BIN" -d "$APPDIR" -p -v -e -k -w \
+xvfb-run -a -- "$LIB4BIN" -d "$APPDIR" -p -v -k -w \
   "$out/winsprite95" \
   /usr/lib/libpthread.so* \
   /usr/lib/librt.so* \

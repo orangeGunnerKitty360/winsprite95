@@ -1,0 +1,39 @@
+name: Package Linux build
+
+on:
+  workflow_dispatch:
+    inputs:
+      build_run_id:
+        description: Workflow run containing the portable Linux artifact
+        required: true
+        type: string
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Download portable Linux build
+        uses: actions/download-artifact@v8
+        with:
+          name: winsprite95-linux-portable-x86_64
+          path: build/bin
+          github-token: ${{ github.token }}
+          run-id: ${{ inputs.build_run_id }}
+      - name: Install packaging dependencies
+        run: sudo apt-get update && sudo apt-get install -y libfuse2 xvfb
+      - name: Build AppImage
+        run: |
+          cd build/bin
+          chmod +x winsprite95
+          sh ../../packaging/linux/package_linux.sh
+      - name: Upload AppImage
+        uses: actions/upload-artifact@v7
+        with:
+          name: winsprite95-linux-x86_64
+          path: build/bin/WinSprite95-anylinux-x86_64.AppImage
+          if-no-files-found: error
