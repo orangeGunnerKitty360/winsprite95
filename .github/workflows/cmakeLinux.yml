@@ -67,6 +67,12 @@ jobs:
           cmake -G Ninja -DCMAKE_BUILD_TYPE=Release ..
         fi
         ninja libresprite
+    - name: Archive portable Linux build
+      uses: actions/upload-artifact@v7
+      with:
+        name: winsprite95-linux-portable-x86_64
+        path: build/bin
+        if-no-files-found: error
     - name: appimage
       id: appimage
       run: |
