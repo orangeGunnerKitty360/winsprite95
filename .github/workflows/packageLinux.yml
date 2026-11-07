@@ -25,7 +25,12 @@ jobs:
           github-token: ${{ github.token }}
           run-id: ${{ inputs.build_run_id }}
       - name: Install packaging dependencies
-        run: sudo apt-get update && sudo apt-get install -y libfuse2 xvfb
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libarchive-dev libfreetype6-dev libfuse2 libgif-dev libjpeg-dev \
+            libpixman-1-dev libpng-dev libsdl2-dev libsdl2-image-dev \
+            libtinyxml2-dev libwebp-dev libx11-dev libxcursor-dev zlib1g-dev
       - name: Build AppImage
         run: |
           cd build/bin
